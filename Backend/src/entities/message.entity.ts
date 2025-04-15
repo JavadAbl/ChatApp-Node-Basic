@@ -3,6 +3,15 @@ import { BaseEntity } from "./base.entity.js";
 
 @Entity({ name: "Message", synchronize: false })
 export class Message extends BaseEntity {
-  @Column("int", { name: "SenderId", unique: true })
+  @Column("int", { name: "RecipientId" })
+  recipientId!: number;
+
+  @Column("int", { name: "SenderId" })
   senderId!: number;
+
+  @Column("varchar", { name: "Content" })
+  content!: string;
+
+  @Column("varchar", { name: "Image" })
+  image!: string;
 }
