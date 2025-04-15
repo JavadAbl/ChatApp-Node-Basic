@@ -6,7 +6,8 @@ import { TYPES } from "#interfaces/Types.js";
 import { plainToInstance } from "class-transformer";
 import { inject, injectable } from "inversify";
 import { Repository } from "typeorm";
-import { hash, genSalt } from "bcryptjs";
+import { hash, genSalt, compare } from "bcryptjs";
+import { LoginDto } from "#interfaces/dtoes/login.dto.js";
 
 @injectable()
 export class UserService implements IUserService {
@@ -28,8 +29,21 @@ export class UserService implements IUserService {
     return plainToInstance(UserDto, savedUser);
   }
 
+  async getUserByUsername(loginDto: LoginDto) {
+    const user = await this.userRep.findOne({ where: { username: loginDto.username } });
+    if (!user) throw new Error("User not found");
+
+    if (!(await this.comparePasswords(loginDto.password, user.password))) throw new Error("Invalid password");
+
+    return plainToInstance(UserDto, user);
+  }
+
   private async hashPassword(password: string) {
     const salt = await genSalt();
     return await hash(password, salt);
+  }
+
+  private async comparePasswords(plainPassword: string, hashedPassword: string) {
+    return await compare(plainPassword, hashedPassword);
   }
 }

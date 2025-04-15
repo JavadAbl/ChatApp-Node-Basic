@@ -1,4 +1,4 @@
-import { sign } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 export function generateToken(id: number): string {
   const secret = process.env.JWT_SECRET;
@@ -6,6 +6,6 @@ export function generateToken(id: number): string {
     throw new Error("JWT_SECRET is not defined");
   }
 
-  const token = sign({ id }, secret, {});
+  const token = jwt.sign({ id }, secret, {});
   return token;
 }
