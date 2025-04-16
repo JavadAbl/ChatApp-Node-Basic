@@ -4,11 +4,14 @@ import baseRoute from "#routes/base.route.js";
 import { configDotenv } from "dotenv";
 import express from "express";
 import { errorHandler } from "#middlewares/errorHandler.middleware.js";
+import cookieParser from "cookie-parser";
 
 configDotenv();
 
 const app = express();
 
+// Express configuration
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

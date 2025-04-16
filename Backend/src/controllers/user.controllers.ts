@@ -24,7 +24,7 @@ export default class UserController {
 
     const token = generateToken(userDto.id);
 
-    res.cookie("token", token, { httpOnly: true, sameSite: true, secure: false, expires: new Date(Date.now() + 900000) });
+    res.cookie("token", token, { httpOnly: true, sameSite: true, secure: false, expires: new Date(Date.now() + 2592000000) });
 
     res.json({ message: "success", payload: userDto });
   }
@@ -34,7 +34,7 @@ export default class UserController {
 
     const token = generateToken(userDto.id);
 
-    res.cookie("token", token, { httpOnly: true, sameSite: true, secure: false, expires: new Date(Date.now() + 900000) });
+    res.cookie("token", token, { httpOnly: true, sameSite: true, secure: false, expires: new Date(Date.now() + 2592000000) });
 
     res.json({ message: "success", payload: userDto });
   }

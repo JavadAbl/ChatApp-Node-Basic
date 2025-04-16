@@ -6,6 +6,6 @@ export function generateToken(id: number): string {
     throw new Error("JWT_SECRET is not defined");
   }
 
-  const token = jwt.sign({ id }, secret, {});
+  const token = jwt.sign({ id }, secret, { expiresIn: "30d" });
   return token;
 }
