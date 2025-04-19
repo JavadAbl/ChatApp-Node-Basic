@@ -12,6 +12,6 @@ export class Message extends BaseEntity {
   @Column("varchar", { name: "Content" })
   content!: string;
 
-  @Column("varchar", { name: "Image" })
-  image!: string;
+  @Column("varchar", { name: "Image", nullable: true })
+  image?: string;
 }

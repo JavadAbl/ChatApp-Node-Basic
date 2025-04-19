@@ -1,6 +1,7 @@
 import { Message } from "#entities/message.entity.js";
 import { User } from "#entities/user.entity.js";
 import { MessageDto } from "#interfaces/dtoes/message.dto.js";
+import { SendMessageDto } from "#interfaces/dtoes/sendMessage.dto.js";
 import { UserDto } from "#interfaces/dtoes/user.dto.js";
 import { IMessageService } from "#interfaces/services/IMessage.service.js";
 import { TYPES } from "#interfaces/Types.js";
@@ -39,5 +40,13 @@ export class MessageService implements IMessageService {
     });
 
     return messages.map((message) => plainToInstance(MessageDto, message));
+  }
+
+  async sendMessage(senderId: number, sendMessageDto: SendMessageDto): Promise<void> {
+    const message = new Message();
+    message.senderId = senderId;
+    message.recipientId = sendMessageDto.targetId;
+    message.content = sendMessageDto.content;
+    await this.messageRep.save(message);
   }
 }

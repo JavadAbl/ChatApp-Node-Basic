@@ -1,7 +1,7 @@
 import { SendMessageDto } from "#interfaces/dtoes/sendMessage.dto.js";
 import { IMessageService } from "#interfaces/services/IMessage.service.js";
 import { TYPES } from "#interfaces/Types.js";
-import { IsInt, IsNotEmpty } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 import { Request, Response } from "express";
 import { inject, injectable } from "inversify";
 
@@ -15,22 +15,29 @@ export default class MessageController {
     await res.json({ message: "success", payload: userDtos });
   }
 
-  async getMessages(req: Request<GetMessagesParams>, res: Response) {
+  async getMessages(req: Request<GetMessagesParams, unknown, unknown>, res: Response) {
+    if (!req.params.id) {
+      res.status(400).json({ message: "id not supplied in params" });
+      return;
+    }
+
     const targetUserId = parseInt(req.params.id);
 
     const messages = await this.messageService.getMessagesByUser(req.userId, targetUserId);
-    await res.json({ message: "success", payload: messages });
+    res.json({ message: "success", payload: messages });
   }
 
   async sendMessage(req: Request<unknown, unknown, SendMessageDto>, res: Response) {
     const sendMessageDto = req.body;
     const senderId = req.userId;
-    const targetUserId = parseInt(req.params.id);
+
+    await this.messageService.sendMessage(senderId, sendMessageDto);
+
+    res.status(201).send();
   }
 }
 
 export class GetMessagesParams {
-  @IsInt()
   @IsNotEmpty()
-  id!: string;
+  id?: string;
 }
