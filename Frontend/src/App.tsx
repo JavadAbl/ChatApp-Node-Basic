@@ -4,6 +4,7 @@ import Index from "./Pages/Index/Index";
 import HomePage from "./Pages/HomePage/HomePage";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
           <Route path="Register" element={<Register />} />
         </Routes>
       </BrowserRouter>
+
+      <Toaster />
     </>
   );
 }

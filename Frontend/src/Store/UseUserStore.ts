@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { API } from "../Utils/API/API";
+import { API, getErrorMessage } from "../Utils/API/API";
+import toast from "react-hot-toast";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const useUserStore = create<UserState>((set, get) => ({
   user: null,
   setUser: (user: User | null) => set((state) => ({ ...state, user })),
@@ -29,8 +29,8 @@ export const useUserStore = create<UserState>((set, get) => ({
         get().setUser(null);
         return false;
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: unknown) {
+      toast.error(getErrorMessage(error));
       return false;
     }
   },

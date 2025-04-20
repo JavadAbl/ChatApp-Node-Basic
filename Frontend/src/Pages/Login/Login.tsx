@@ -20,9 +20,10 @@ export default function Login() {
             </label>
 
             <div className="relative">
-              <span className="absolute z-1 inset-y-0 left-0 pl-3 flex items-center text-[#a68a64]">
+              <span className="absolute z-1 inset-y-0 left-0 pl-3 flex items-center text-[#a68a64] ">
                 <i className="fas fa-envelope"></i>
               </span>
+
               <input
                 type="email"
                 placeholder="email@example.com"

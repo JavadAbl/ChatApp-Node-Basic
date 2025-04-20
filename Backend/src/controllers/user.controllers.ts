@@ -36,11 +36,10 @@ export default class UserController {
 
     res.cookie("token", token, { httpOnly: true, sameSite: true, secure: false, expires: new Date(Date.now() + 2592000000) });
 
-    res.json(  userDto );
+    res.json(userDto);
   }
-  
-  
-  async checkAuth(req,res){
-  res.send();
+
+  checkAuth(req: Request, res: Response) {
+    res.send();
   }
 }
