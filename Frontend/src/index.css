@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* @theme {
+  --color-primary: oklch(0.63 0.2577 29.23);
+}
+
+@utility text-primary {
+  color: yellow !important;
+}
+ */

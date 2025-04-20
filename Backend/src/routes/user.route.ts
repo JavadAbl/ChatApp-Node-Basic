@@ -14,4 +14,6 @@ userRoute.post("/register", validateDto(RegisterDto), (req, res) => userControll
 
 userRoute.get("/get", (req, res) => userController.getUser(req, res));
 
+userRoute.get("/CheckAuth", (req, res) => userController.checkAuth(req, res));
+
 export default userRoute;
