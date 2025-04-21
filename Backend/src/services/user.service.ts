@@ -17,8 +17,11 @@ export class UserService implements IUserService {
     return this.userRepFactory();
   }
 
-  getUser(id: number): User | undefined | string {
-    throw new Error("Method not implemented.");
+  async getUser(id: number) {
+    if (!id) throw new Error("UserId not found");
+    const user = await this.userRep.findOne({ where: { id } });
+    if (!user) return null;
+    return plainToInstance(UserDto, user);
   }
 
   async createUser(registerDto: RegisterDto) {

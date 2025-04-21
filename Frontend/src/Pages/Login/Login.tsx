@@ -61,7 +61,7 @@ export default function Login() {
           </div>
 
           <div className="form-control mt-6">
-            <button className="btn w-full bg-[#8b5e3c] text-white hover:bg-[#704c2a]">
+            <button className="btn w-full bg-[#8b5e3c] text-primaryy hover:bg-[#704c2a] ">
               <i className="fas fa-sign-in-alt mr-2"></i> Login
             </button>
           </div>

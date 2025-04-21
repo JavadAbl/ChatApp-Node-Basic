@@ -2,10 +2,19 @@
 @plugin "daisyui";
 
 /* @theme {
-  --color-primary: oklch(0.63 0.2577 29.23);
+  --color-primaryy: yellow;
 }
 
-@utility text-primary {
-  color: yellow !important;
+@utility text-x {
+  color: red;
+} */
+
+/* .not-hover\:opacity-75:not(*:hover) {
+  opacity: 75%;
+}
+@media not (hover: hover) {
+  .not-hover\:opacity-75 {
+    opacity: 75%;
+  }
 }
  */

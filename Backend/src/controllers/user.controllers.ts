@@ -39,7 +39,8 @@ export default class UserController {
     res.json(userDto);
   }
 
-  checkAuth(req: Request, res: Response) {
-    res.send();
+  async checkAuth(req: Request, res: Response) {
+    const user = await this.userService.getUser(req.userId);
+    res.send(user);
   }
 }
