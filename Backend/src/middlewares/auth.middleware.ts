@@ -1,10 +1,12 @@
+import { AppError } from "#helpers/AppError.js";
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import status from "http-status";
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   // Add authentication logic here
   const token = req.cookies?.token;
-  if (!token) throw new Error("No token provided");
+  if (!token) throw new AppError(status.UNAUTHORIZED, "No token provided");
 
   // Verify the token and extract user information
   const secret = process.env.JWT_SECRET;

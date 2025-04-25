@@ -1,13 +1,27 @@
 @import "tailwindcss";
 @plugin "daisyui";
-
-/* @theme {
-  --color-primaryy: yellow;
+x {
+  flex: 1;
 }
+@theme {
+  --color-bg-l1: #a86523;
+  --color-bg-l2: #fcefcb;
+  --color-bg-cream: #fffaf0;
+  --color-bg-input: #fffaf0;
 
-@utility text-x {
-  color: red;
-} */
+  --color-border-tan: #a68a64;
+
+  --color-icon-tan: #a68a64;
+
+  --color-text-brown: #5d3a00;
+  --color-text-main: #5d3a00;
+  --color-text-label: #5d3a00;
+
+  --color-btn-brown: #8b5e3c;
+  --color-btn-hover: #704c2a;
+
+  --color-link-brown: #8b5e3c;
+}
 
 /* .not-hover\:opacity-75:not(*:hover) {
   opacity: 75%;

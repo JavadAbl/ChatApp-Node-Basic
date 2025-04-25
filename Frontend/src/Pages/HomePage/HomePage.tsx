@@ -1,3 +1,9 @@
+import Sidebar from "../../Components/Sidebar/Sidebar";
+
 export default function HomePage() {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  );
 }
