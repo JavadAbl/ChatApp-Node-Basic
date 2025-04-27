@@ -1,13 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
-x {
-  flex: 1;
-}
+
 @theme {
   --color-bg-l1: #a86523;
   --color-bg-l2: #fcefcb;
   --color-bg-cream: #fffaf0;
-  --color-bg-input: #fffaf0;
 
   --color-border-tan: #a68a64;
 
