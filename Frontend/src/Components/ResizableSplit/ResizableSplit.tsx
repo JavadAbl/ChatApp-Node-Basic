@@ -44,7 +44,7 @@ export default function ResizableSplit({
       const initial = getPixels(initialWidth, containerSize);
       setDividerPosition((initial / containerSize) * 100);
     }
-  }, [initialWidth, direction, storageKey]);
+  }, [initialWidth, direction, storageKey, isHorizontal]);
 
   useEffect(() => {
     if (storageKey) {
@@ -125,7 +125,7 @@ export default function ResizableSplit({
       } w-full h-screen overflow-hidden bg-base-200`}
     >
       <div
-        className="bg-base-100 p-4"
+        className="bg-base-100"
         style={{
           width: isHorizontal ? `${dividerPosition}%` : "100%",
           height: isHorizontal ? "100%" : `${dividerPosition}%`,
@@ -146,7 +146,7 @@ export default function ResizableSplit({
       />
 
       <div
-        className="bg-base-100 p-4"
+        className="bg-base-100"
         style={{
           width: isHorizontal ? `${100 - dividerPosition}%` : "100%",
           height: isHorizontal ? "100%" : `${100 - dividerPosition}%`,

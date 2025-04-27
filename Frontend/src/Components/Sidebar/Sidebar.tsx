@@ -12,7 +12,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col items-stretch justify-content-start bg-bg-cream border border-border-tan rounded min-h-[75vh]">
+    <div className="flex flex-col items-stretch justify-content-start bg-bg-cream rounded w-full h-[100%]">
       <Sidebar_Card chat={data[0]} />
       <Sidebar_Card chat={data[0]} />
     </div>
