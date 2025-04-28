@@ -32,7 +32,7 @@ export const useUserStore = create<UserState>((set, get) => ({
   action_signOut: () => set((state) => ({ ...state, user: null })),
 }));
 
-interface UserState {
+export interface UserState {
   user: User | null;
   setUser: (user: User | null) => void;
   action_checkAuth: () => Promise<boolean>;
@@ -40,7 +40,7 @@ interface UserState {
   action_signOut: () => void;
 }
 
-interface User {
+export interface User {
   id: number;
 
   username: string;

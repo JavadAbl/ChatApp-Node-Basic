@@ -122,7 +122,7 @@ export default function ResizableSplit({
       ref={containerRef}
       className={`flex ${
         isHorizontal ? "flex-row" : "flex-col"
-      } w-full h-screen overflow-hidden bg-base-200`}
+      } w-full h-full overflow-hidden bg-base-200 rounded-[0.5rem]`}
     >
       <div
         className="bg-base-100"
@@ -139,7 +139,7 @@ export default function ResizableSplit({
       {/* Divider */}
       <div
         className={`${
-          isHorizontal ? "w-2 cursor-col-resize" : "h-2 cursor-row-resize"
+          isHorizontal ? "w-1 cursor-col-resize" : "h-2 cursor-row-resize"
         } bg-base-300 hover:bg-primary transition-all`}
         onMouseDown={handleMouseDown}
         onDoubleClick={handleDoubleClick}

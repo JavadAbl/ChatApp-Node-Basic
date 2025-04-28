@@ -1,6 +1,9 @@
+import { useChatStore } from "../../Store/UseMessageStore";
 import Sidebar_Card from "./Sidebar_Card";
 
 export default function Sidebar() {
+  const action_getChat = useChatStore((selector) => selector.action_getChat);
+
   const data = [
     {
       image: "https://i.pravatar.cc/150?img=3",

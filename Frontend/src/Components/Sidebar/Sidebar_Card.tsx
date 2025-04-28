@@ -1,6 +1,6 @@
 export default function Sidebar_Card({ chat }: any) {
   return (
-    <div className="flex justify-between items-center bg-bg-cream shadow-md p-1">
+    <div className="group flex justify-between items-center bg-bg-cream hover:bg-btn-brown shadow-md p-1 cursor-pointer">
       {/* Left: chat Image */}
       <div className="flex-shrink-0">
         <img
@@ -12,17 +12,19 @@ export default function Sidebar_Card({ chat }: any) {
 
       {/* Middle: Name and Last Message */}
       <div className="flex-1 mx-4 min-w-0">
-        <div className="font-semibold text-text-main text-base truncate">
+        <div className="font-semibold text-text-main group-hover:text-bg-cream text-base truncate">
           {chat.name}
         </div>
-        <div className="text-text-label text-sm truncate">
+        <div className="text-text-label group-hover:text-bg-cream text-sm truncate">
           {chat.lastMessage}
         </div>
       </div>
 
       {/* Right: Date and Unread Count */}
       <div className="flex flex-col items-end space-y-1">
-        <span className="text-text-label text-xs">{chat.date}</span>
+        <span className="text-text-label group-hover:text-bg-cream text-xs">
+          {chat.date}
+        </span>
         {chat.unreadCount > 0 && (
           <div className="bg-btn-brown px-2 py-0.5 rounded-full text-white text-xs">
             {chat.unreadCount}
