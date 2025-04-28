@@ -1,4 +1,14 @@
+import { useMutation } from "@tanstack/react-query";
+import { getChatByUserId } from "../../Store/Actions";
+
 export default function Sidebar_Card({ chat }: any) {
+  const {} = useMutation({
+    mutationFn: getChatByUserId,
+  });
+
+  // Function to handle clicking on a chat card
+  const handleClick = () => {};
+
   return (
     <div className="group flex justify-between items-center bg-bg-cream hover:bg-btn-brown shadow-md p-1 cursor-pointer">
       {/* Left: chat Image */}
