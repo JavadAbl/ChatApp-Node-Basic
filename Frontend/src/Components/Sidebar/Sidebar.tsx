@@ -1,23 +1,22 @@
-import { useChatStore } from "../../Store/UseMessageStore";
+import { useEffect, useState } from "react";
+import { ChatCard, useChatStore } from "../../Store/UseMessageStore";
 import Sidebar_Card from "./Sidebar_Card";
 
 export default function Sidebar() {
-  const action_getChat = useChatStore((selector) => selector.action_getChat);
+  const action_getChatList = useChatStore(
+    (selector) => selector.action_getChatList
+  );
+  const [chatCards, setChatCards] = useState<ChatCard[]>([]);
 
-  const data = [
-    {
-      image: "https://i.pravatar.cc/150?img=3",
-      name: "Jane Doe",
-      lastMessage: "Hey, are you coming today?",
-      date: "2:45 PM",
-      unreadCount: 3,
-    },
-  ];
+  useEffect(() => {
+    action_getChatList().then((data) => setChatCards(data));
+  }, []);
 
   return (
     <div className="flex flex-col items-stretch justify-content-start bg-bg-cream rounded w-full h-[100%]">
-      <Sidebar_Card chat={data[0]} />
-      <Sidebar_Card chat={data[0]} />
+      {chatCards.map((item) => (
+        <Sidebar_Card chat={item} key={item.user.id.toString()} />
+      ))}
     </div>
   );
 }

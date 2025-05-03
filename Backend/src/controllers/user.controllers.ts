@@ -13,11 +13,11 @@ export default class UserController {
     // this.getUser = this.getUser.bind(this);
   }
 
-  async getUser(req: Request, res: Response) {
+  /*  async getUser(req: Request, res: Response) {
     const user = this.userService.getUser(1);
 
     res.json(user);
-  }
+  } */
 
   async login(req: Request<unknown, unknown, LoginDto>, res: Response) {
     const userDto = await this.userService.getUserByUsername(req.body);
@@ -41,6 +41,6 @@ export default class UserController {
 
   async checkAuth(req: Request, res: Response) {
     const user = await this.userService.getUser(req.userId);
-    res.send(user);
+    res.json(user);
   }
 }

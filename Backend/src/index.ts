@@ -6,6 +6,7 @@ import express from "express";
 import { errorHandler } from "#middlewares/errorHandler.middleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { socketInit } from "#libs/socket.js";
 
 configDotenv();
 
@@ -23,7 +24,7 @@ app.use(baseRoute);
 app.use(errorHandler);
 
 const port = process.env.PORT || 7000;
-app.listen(port, () => {
+const appServer = app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 
   appDbContext
@@ -31,3 +32,5 @@ app.listen(port, () => {
     .then(() => console.log("Data Source initialized"))
     .catch((error) => console.error("Error initializing Data Source", error));
 });
+
+socketInit(appServer);

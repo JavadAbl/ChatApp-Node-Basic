@@ -13,7 +13,7 @@ userRoute.post("/login", validateDtoMiddleware(LoginDto), (req, res) => userCont
 
 userRoute.post("/register", validateDtoMiddleware(RegisterDto), (req, res) => userController.register(req, res));
 
-userRoute.get("/get", (req, res) => userController.getUser(req, res));
+// userRoute.get("/get", (req, res) => userController.getUser(req, res));
 
 userRoute.get("/CheckAuth", authMiddleware, (req, res) => userController.checkAuth(req, res));
 

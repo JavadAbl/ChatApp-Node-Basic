@@ -8,6 +8,7 @@ import { inject, injectable } from "inversify";
 import { Repository } from "typeorm";
 import { hash, genSalt, compare } from "bcryptjs";
 import { LoginDto } from "#interfaces/dtoes/login.dto.js";
+import { toDto } from "#helpers/transformers.js";
 
 @injectable()
 export class UserService implements IUserService {
@@ -21,7 +22,8 @@ export class UserService implements IUserService {
     if (!id) throw new Error("UserId not found");
     const user = await this.userRep.findOne({ where: { id } });
     if (!user) return null;
-    return plainToInstance(UserDto, user);
+
+    return toDto(UserDto, user);
   }
 
   async createUser(registerDto: RegisterDto) {

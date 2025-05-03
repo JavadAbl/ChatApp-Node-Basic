@@ -31,9 +31,9 @@ export default class MessageController {
     const sendMessageDto = req.body;
     const senderId = req.userId;
 
-    await this.messageService.sendMessage(senderId, sendMessageDto);
+    const newMessage = await this.messageService.sendMessage(senderId, sendMessageDto);
 
-    res.status(201).send();
+    res.status(201).json({ payload: newMessage, message: "success" });
   }
 }
 
