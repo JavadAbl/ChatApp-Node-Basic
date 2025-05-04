@@ -13,6 +13,7 @@ export function useAuthCheck() {
 
     async function checkAuthentication() {
       const isAuthenticated = await action_checkAuth();
+
       if (isAuthenticated) {
         // Authenticated, but redirect away from public routes
         if (publicRoutes.includes(location.pathname)) {

@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import { API } from "../Utils/API/API";
+import { io, Socket } from "socket.io-client";
 
 export const useUserStore = create<UserState>((set, get) => ({
   user: null,
+  onlineUsers: [],
   socket: null,
 
   setUser: (user: User | null) => set((state) => ({ ...state, user })),
@@ -12,6 +14,7 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     if (res.status === 200) {
       get().setUser(res.data.payload);
+      get().connectSocket();
       return true;
     }
 
@@ -23,7 +26,7 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     if (res.status === 200) {
       get().setUser(res.data);
-
+      get().connectSocket();
       return true;
     } else {
       get().setUser(null);
@@ -34,15 +37,17 @@ export const useUserStore = create<UserState>((set, get) => ({
   action_signOut: () => set((state) => ({ ...state, user: null })),
 
   connectSocket: () => {
-    const socket = new WebSocket("http://localhost:7000");
-    socket.onopen = () => {
-      console.log("Socket opened");
-      get().socket = socket;
-    };
-    socket.onclose = () => {
-      console.log("Socket closed");
-      get().socket = null;
-    };
+    if (get().socket && get().socket?.connected) return;
+
+    const socket = io("http://localhost:7000", {
+      query: { userId: get().user?.id },
+    });
+
+    socket.on("onlineUsers", (data) => {
+      set({ onlineUsers: data });
+    });
+
+    set({ socket });
   },
 
   disconnectSocket: () => {
@@ -61,7 +66,8 @@ export interface UserState {
   action_login: (username: string, password: string) => Promise<boolean>;
   action_signOut: () => void;
 
-  socket: WebSocket | null;
+  onlineUsers: number[];
+  socket: Socket | null;
   connectSocket: () => void;
   disconnectSocket: () => void;
 }
